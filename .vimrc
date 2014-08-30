@@ -5,6 +5,12 @@ execute pathogen#infect()
 " Toggle NERDTree
 map <F1> :NERDTreeToggle<CR>
 
+" Show lines instead of arrows
+let NERDTreeDirArrows=0
+
+" Hide 'Press ? for help'
+let NERDTreeMinimalUI=1
+
 " Cursor highlight
 set cursorline
 set cursorcolumn
