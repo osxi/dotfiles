@@ -27,7 +27,14 @@ set mouse=a
 syntax on
 
 " Powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+if !empty(glob("$HOME/.local/lib/python3.4"))
+  " Use 3.4 bindings preferably
+  set rtp+=$HOME/.local/lib/python3.4/site-packages/powerline/bindings/vim/
+else
+  " Use any Python if 3.4 bindings not found
+  set rtp+=$HOME/.local/lib/python*.*/site-packages/powerline/bindings/vim/
+endif
+
 " Always show statusline
 set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
