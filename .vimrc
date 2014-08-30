@@ -69,3 +69,8 @@ inoremap ( ()<Esc>:let leavechar=")"<CR>i
 inoremap [ []<Esc>:let leavechar="]"<CR>i
 inoremap ' ''<Esc>:let leavechar="'"<CR>i
 inoremap " ""<Esc>:let leavechar="""<CR>i
+
+" Fugitive
+map <C-b> :Gblame<CR>
+map <C-d> :Gdiff<CR>
+map <C-a> :Gstatus<CR>
