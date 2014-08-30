@@ -62,3 +62,10 @@ colorscheme solarized
 " Highlight columns 80+
 highlight ColorColumn ctermbg=233 guibg=#121212
 let &colorcolumn=join(range(81,999),",")
+
+" Automatically insert matching braces and quotes
+inoremap { {}<Esc>:let leavechar="}"<CR>i
+inoremap ( ()<Esc>:let leavechar=")"<CR>i
+inoremap [ []<Esc>:let leavechar="]"<CR>i
+inoremap ' ''<Esc>:let leavechar="'"<CR>i
+inoremap " ""<Esc>:let leavechar="""<CR>i
