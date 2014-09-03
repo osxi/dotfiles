@@ -1,6 +1,8 @@
 " Load pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+if $VIM_PATHOGEN == '1'
+  runtime bundle/vim-pathogen/autoload/pathogen.vim
+  execute pathogen#infect()
+endif
 
 " Toggle NERDTree
 map <F1> :NERDTreeToggle<CR>
