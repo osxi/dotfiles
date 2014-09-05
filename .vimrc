@@ -76,3 +76,11 @@ inoremap " ""<Esc>:let leavechar="""<CR>i
 map <C-b> :Gblame<CR>
 map <C-d> :Gdiff<CR>
 map <C-a> :Gstatus<CR>
+
+" Use fancy separators for airline
+if $VIM_POWERLINE != '1'
+  let g:airline_left_sep=''
+  let g:airline_left_alt_sep=''
+  let g:airline_right_sep=''
+  let g:airline_right_alt_sep=''
+endif
