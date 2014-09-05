@@ -84,3 +84,21 @@ if $VIM_POWERLINE != '1'
   let g:airline_right_sep=''
   let g:airline_right_alt_sep=''
 endif
+
+" gVim-specific settings
+if has("gui_running")
+  " Attempt to load fancy font
+  silent! set guifont=Inconsolata\ for\ Powerline:h18
+  " Hide the [NERDTree] scrollbar
+  set guioptions-=L
+endif
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
