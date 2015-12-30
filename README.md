@@ -9,4 +9,4 @@ Docs: [http://i3wm.org/docs/](http://i3wm.org/docs/)
 ## Xsession
 
   - use Colemak
-  - switch Caps Lock with Control (Colemak Delete mapping is ignored)
+  - switch Caps Lock with Control (Colemak Backspace mapping is ignored)
