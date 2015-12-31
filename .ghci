@@ -1,0 +1,2 @@
+:set prompt "ghci> "
+:def c const $ return ":! clear"
