@@ -15,3 +15,7 @@ Docs: [http://i3wm.org/docs/](http://i3wm.org/docs/)
 
   - set prompt to "ghci> "
   - `:c` to clear screen
+
+## Nethack
+
+Docs: [http://www.nethack.org/v343/Guidebook.html#_TOCentry_42](http://www.nethack.org/v343/Guidebook.html#_TOCentry_42)
