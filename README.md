@@ -6,6 +6,10 @@ It puts the dotfiles in it's home directory.
 
 Docs: [http://i3wm.org/docs/](http://i3wm.org/docs/)
 
+## i3status
+
+Docs: [https://i3wm.org/i3status/manpage.html](https://i3wm.org/i3status/manpage.html)
+
 ## Xsession
 
   - use Colemak
