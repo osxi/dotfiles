@@ -7,9 +7,11 @@ set -e
 # Description: Prevent the R.A.T.7 mouse in X11 from having focus issues.
 # Usage:       ./fix_mouse.sh
 #
-#              Ensure that this script is executable. You can also invoke this
-#              script using `DEBUG=1 ./fix_mouse.sh` to get debug logging for 
-#              this various variables that should be automatically set for you.
+#              This script works by ignoring buttons 13, 14, and 15, which are
+#              known to cause focus issues in X11. Ensure that this script is
+#              executable. You can also invoke this script using
+#              `DEBUG=1 ./fix_mouse.sh` to get debug logging for this various
+#              variables that should be automatically set for you.
 # References:  https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-input-evdev/+bug/615892
 #              https://wiki.archlinux.org/index.php/Mad_Catz_Mouse
 
