@@ -23,16 +23,6 @@ SUCCESS_MESSAGE="Successfully set buttons for $NAME"
 ID_PATTERN="s/.*id=\([0-9]\{1,2\}\).*/\1/p"
 ID="$(xinput list "$NAME" 2> $OBLIVION | sed -n $ID_PATTERN)"
 
-if [ -n "$DEBUG" ]; then
-  debug
-fi
-
-{
-  set_buttons
-} || {
-  catch_error
-}
-
 set_buttons () {
   xinput --set-button-map $ID $BUTTONS 2> $OBLIVION && \
   echo $SUCCESS_MESSAGE
@@ -44,9 +34,17 @@ catch_error () {
 }
 
 debug () {
-  echo "DEBUG MODE"
-  echo "----------"
-  echo "NAME: $NAME"
-  echo "ID_PATTERN: $ID_PATTERN"
-  echo "ID: $ID"
+  printf "NAME:       $NAME\n"
+  printf "ID_PATTERN: $ID_PATTERN\n"
+  printf "ID:         $ID\n\n"
+}
+
+if [ -n "$DEBUG" ]; then
+  debug
+fi
+
+{
+  set_buttons
+} || {
+  catch_error
 }
