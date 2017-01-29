@@ -23,3 +23,13 @@ Docs: [https://i3wm.org/i3status/manpage.html](https://i3wm.org/i3status/manpage
 ## Nethack
 
 Docs: [http://www.nethack.org/v343/Guidebook.html#_TOCentry_42](http://www.nethack.org/v343/Guidebook.html#_TOCentry_42)
+
+## NixOS Configurations
+
+These are my configuration.nix files.
+
+Docs: [NixOS Manual](https://nixos.org/nixos/manual/)
+
+### nixos/brix.nix
+
+This machine runs as an HTPC on a Gigabyte BRIX GB-BXBT-2807.
