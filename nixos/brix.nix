@@ -24,6 +24,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
+    telnet
     git
     vim
     htop
