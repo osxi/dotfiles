@@ -33,3 +33,7 @@ Docs: [NixOS Manual](https://nixos.org/nixos/manual/)
 ### nixos/brix.nix
 
 This machine runs as an HTPC on a Gigabyte BRIX GB-BXBT-2807.
+
+### nixos/mbp.nix
+
+My mid-2012 MacBook Pro is my daily driver for software development.
