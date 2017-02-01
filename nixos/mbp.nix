@@ -47,6 +47,8 @@
 
   powerManagement.enable = true;
 
+  programs.zsh.enable = true;
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -54,25 +56,43 @@
     htop
     vim
     git
-    gnumake
     aws
     openssl
-    postgresql
-    nodejs-6_x
     google-chrome
-    ruby
-    go_1_6
-    redis
-    elasticsearch
     emacs25
     mbpfan
     mu
+    arandr
+    tmux
+    gnupg
+    unzip
+    telnet
+
+    go_1_6
+    glide
   ];
 
   services = {
     openssh.enable = true;
-    postgresql.enable = true;
     printing.enable = false;
+    redis.enable = true;
+    elasticsearch.enable = true;
+    emacs.enable = true;
+
+    postgresql = {
+      enable = true;
+      extraPlugins = [ (pkgs.postgis.override { postgresql = pkgs.postgresql95; }).v_2_2_1 ];
+    };
+
+    mbpfan = {
+      enable = true;
+      highTemp = 70;
+      lowTemp = 55;
+      maxFanSpeed = 5000;
+      maxTemp = 90;
+      minFanSpeed = 1500;
+      pollingInterval = 5;
+    };
 
     xserver = {
       autorun = false;
@@ -105,9 +125,14 @@
 
   hardware.opengl.driSupport32Bit = true;
 
-  # users.mutableUsers = false;
+  users = {
+    defaultUserShell = "/run/current-system/sw/bin/zsh";
+    mutableUsers = true;
+  };
+
   users.extraUsers.zach = {
     isNormalUser = true;
+    shell = "/run/current-system/sw/bin/zsh";
     uid = 1000;
     extraGroups = [ "wheel" ];
     createHome = true;
