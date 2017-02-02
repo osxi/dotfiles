@@ -67,10 +67,15 @@
     gnupg
     unzip
     telnet
+    alpine
+    file
+    mplayer
 
     go_1_6
     glide
   ];
+
+  virtualisation.docker.enable = true;
 
   services = {
     openssh.enable = true;
@@ -88,9 +93,9 @@
       enable = true;
       highTemp = 70;
       lowTemp = 55;
-      maxFanSpeed = 5000;
+      maxFanSpeed = 5500;
       maxTemp = 90;
-      minFanSpeed = 1500;
+      minFanSpeed = 2500;
       pollingInterval = 5;
     };
 
@@ -134,7 +139,7 @@
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/zsh";
     uid = 1000;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     createHome = true;
     home = "/home/zach";
   };
