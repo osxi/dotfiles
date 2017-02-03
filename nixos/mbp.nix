@@ -39,6 +39,7 @@
     bluetooth.enable = true;
     facetimehd.enable = true;
     pulseaudio.enable = true;
+    opengl.driSupport32Bit = true;
   };
 
   time.timeZone = "US/Central";
@@ -105,8 +106,7 @@
       layout = "us";
       xkbOptions = "ctrl:nocaps";
       xkbVariant = "mac";
-      videoDrivers = [ "nvidia" ];
-      displayManager.sddm.enable = true;
+      videoDrivers = [ "nvidiaLegacy340" ];
       desktopManager.kde5.enable = true;
       windowManager.i3.enable = true;
 
@@ -127,8 +127,6 @@
       };
     };
   };
-
-  hardware.opengl.driSupport32Bit = true;
 
   users = {
     defaultUserShell = "/run/current-system/sw/bin/zsh";
