@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixos, ... }:
 
 {
   imports =
@@ -13,6 +13,8 @@
   boot = {
     cleanTmpDir = true;
     blacklistedKernelModules = [ "b43" ];
+
+    # initrd.kernelModules = ["vboxdrv"];
 
     loader = {
       systemd-boot.enable = true;
@@ -32,7 +34,7 @@
   networking = {
     hostName = "zachs-mbp";
     wireless.enable = true;
-    firewall.enable = true;
+    firewall.enable = false;
   };
 
   hardware = {
@@ -40,16 +42,30 @@
     facetimehd.enable = true;
     pulseaudio.enable = true;
     opengl.driSupport32Bit = true;
+
+    # bumblebee = {
+    #   enable = true;
+    #   driver = "nvidia";
+    #   connectDisplay = true;
+    # };
   };
 
   time.timeZone = "US/Central";
 
-  nixpkgs.config.allowUnfree = true;
-
   powerManagement.enable = true;
 
   programs.zsh.enable = true;
+  # programs.virtualbox.enable = true;
 
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   packageOverrides = pkgs: rec {
+  #     emacs = pkgs.emacs.override {
+  #       emacs = emacs25;
+  #     };
+  #   };
+  # };
+ 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -71,19 +87,66 @@
     alpine
     file
     mplayer
+    scrot
+    patchelf
+    pass
+    conky
+    kde5.kcolorchooser
+    lm_sensors
+    i3lock
+    rabbitmq_server
+    hplip
+    python
+    sloccount
+    libreoffice
+    filezilla
 
+    bzflag
+    gcc
+    zlib
     go_1_6
     glide
+    cassandra
   ];
 
-  virtualisation.docker.enable = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
+  virtualisation = {
+    docker.enable = true;
+    virtualbox.host.enable = true;
+  };
 
   services = {
+    # virtualboxHost.enable = true;
     openssh.enable = true;
-    printing.enable = false;
+    printing.enable = true;
+    printing.drivers = [ pkgs.hplip ];
     redis.enable = true;
-    elasticsearch.enable = true;
-    emacs.enable = true;
+    rabbitmq.enable = false;
+    avahi.enable = true;
+
+    # cassandra.enable = true;
+
+    logind.extraConfig = "HandleLidSwitch=ignore";
+
+    # vsftpd = {
+    #   enable = true;
+    #   localUsers = true;
+    # };
+
+    acpid.powerEventCommands = "";
+
+    elasticsearch = {
+      enable = true;
+      package = pkgs.elasticsearch;
+    };
+
+    emacs = {
+      enable = true;
+      package = pkgs.emacs25;
+    };
 
     postgresql = {
       enable = true;
@@ -92,11 +155,11 @@
 
     mbpfan = {
       enable = true;
-      highTemp = 70;
+      highTemp = 60;
       lowTemp = 55;
-      maxFanSpeed = 5500;
-      maxTemp = 90;
-      minFanSpeed = 2500;
+      maxFanSpeed = 6001;
+      maxTemp = 95;
+      minFanSpeed = 3300;
       pollingInterval = 5;
     };
 
@@ -108,7 +171,18 @@
       xkbVariant = "mac";
       videoDrivers = [ "nvidiaLegacy340" ];
       desktopManager.kde5.enable = true;
-      windowManager.i3.enable = true;
+      windowManager = {
+        i3.enable = true;
+        # afterstep.enable = true;
+        # fluxbox.enable = true; 
+        # xmonad.enable = true;
+	default = "i3";
+
+        # exwm = {
+        #   enable = true;
+        #   enableDefaultConfig = false;
+        # };
+      };
 
       multitouch = {
         enable = true;
@@ -137,7 +211,7 @@
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/zsh";
     uid = 1000;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "vboxusers" ];
     createHome = true;
     home = "/home/zach";
   };
